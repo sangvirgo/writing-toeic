@@ -71,6 +71,12 @@ function buildNaturalVersion(corrected: string, mode: PracticeMode): string {
   if (mode === 'mistake_review') {
     return corrected.replace(/\.$/, '') + ' — nice job applying the corrected pattern.';
   }
+  if (mode === 'ielts_sentence') {
+    return corrected.replace(/\.$/, '') + ', which is a common trend in modern society.';
+  }
+  if (mode === 'ielts_paragraph') {
+    return corrected.replace(/\.$/, '') + ', and this trend is likely to continue in the future.';
+  }
   return corrected.replace(/\.$/, '') + ', and I plan to keep building on it tomorrow.';
 }
 
@@ -118,16 +124,38 @@ export function mockAnalyze(input: MockInput): AiFeedback {
               example: 'Reading it aloud helps you catch awkward word order.',
             },
           ]
-        : [
-          {
-            pattern: 'Today, I learned that ___.',
-            example: 'Today, I learned that clear communication saves time.',
-          },
-          {
-            pattern: 'One thing I want to improve tomorrow is ___.',
-            example: 'One thing I want to improve tomorrow is my email tone.',
-          },
-        ];
+        : mode === 'ielts_sentence'
+          ? [
+              {
+                pattern: 'It is increasingly common for + noun + to + verb',
+                example: 'It is increasingly common for students to study online.',
+              },
+              {
+                pattern: 'One of the main reasons why + clause + is that + clause',
+                example: 'One of the main reasons why tuition has risen is that costs keep increasing.',
+              },
+            ]
+          : mode === 'ielts_paragraph'
+            ? [
+                {
+                  pattern: 'Topic sentence: clearly state the main idea of the paragraph.',
+                  example: 'One major advantage of remote work is the flexibility it offers employees.',
+                },
+                {
+                  pattern: 'Linking: use "Furthermore" / "In addition" / "Moreover" to add points.',
+                  example: 'Furthermore, employees can save money on commuting.',
+                },
+              ]
+            : [
+              {
+                pattern: 'Today, I learned that ___.',
+                example: 'Today, I learned that clear communication saves time.',
+              },
+              {
+                pattern: 'One thing I want to improve tomorrow is ___.',
+                example: 'One thing I want to improve tomorrow is my email tone.',
+              },
+            ];
 
   const ankiCards =
     mode === 'toeic_chunk'
@@ -140,12 +168,22 @@ export function mockAnalyze(input: MockInput): AiFeedback {
             { front: 'Practiced correction', back: correctedVersion },
             { front: 'Reminder', back: 'Apply the same pattern next time you see this mistake.' },
           ]
-        : [
-          { front: `Journal prompt: ${prompt}`, back: correctedVersion },
-          { front: 'Natural rewrite', back: naturalVersion },
-        ];
+        : mode === 'ielts_sentence'
+          ? [
+              { front: 'IELTS sentence pattern', back: correctedVersion },
+              { front: 'Academic phrase', back: 'It is increasingly common for + noun + to + verb' },
+            ]
+          : mode === 'ielts_paragraph'
+            ? [
+                { front: 'IELTS paragraph structure', back: 'Topic sentence → Explanation → Example → Result' },
+                { front: 'Useful linking words', back: 'Furthermore, Moreover, In addition, Consequently' },
+              ]
+            : [
+              { front: `Journal prompt: ${prompt}`, back: correctedVersion },
+              { front: 'Natural rewrite', back: naturalVersion },
+            ];
 
-  return {
+  const feedback: AiFeedback = {
     correctedVersion,
     naturalVersion,
     score,
@@ -153,6 +191,23 @@ export function mockAnalyze(input: MockInput): AiFeedback {
     usefulPatterns,
     ankiCards,
   };
+
+  if (mode === 'ielts_paragraph') {
+    feedback.ielts = {
+      estimatedBand: 6.0,
+      taskResponse: 6,
+      coherenceCohesion: 6,
+      lexicalResource: 6,
+      grammaticalRangeAccuracy: 6,
+      mainAdvice: [
+        'Add a clearer topic sentence.',
+        'Include a specific example to support your point.',
+        'Use more linking words for better coherence.',
+      ],
+    };
+  }
+
+  return feedback;
 }
 
 interface MockChunkInput {

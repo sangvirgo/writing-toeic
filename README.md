@@ -5,6 +5,8 @@ A small local app to practice English writing for Vietnamese learners — TOEIC 
 ## What it does
 
 - **TOEIC Chunk Practice** — pull a random chunk from `store/toeic-chunks.json` (text, Vietnamese meaning, topic, difficulty, example), write 2–3 sentences using it.
+- **IELTS Sentence Builder (Level 1)** — generate a random IELTS sentence prompt with a target academic pattern, write 2–3 IELTS-style sentences.
+- **IELTS Paragraph Builder (Level 2)** — generate a random IELTS paragraph prompt, write one body paragraph of 80–120 words. Feedback includes IELTS band scores.
 - **Daily Journal** — pick a prompt and write a short journal entry in English.
 - **AI feedback** — corrected version, more natural rewrite, scores (grammar / vocabulary / naturalness), mistakes with explanations, useful patterns, and Anki cards. Powered by **Gemini** when `GEMINI_API_KEY` is set; otherwise falls back to a local **mock**.
 - **Mistake Review** — every mistake from past attempts shows up in one list, with a "Practice this mistake" shortcut.
@@ -46,6 +48,7 @@ Open http://localhost:5173.
 | --- | --- |
 | `store/writing-history.json` | Every attempt with its feedback |
 | `store/toeic-chunks.json` | The chunk pool (80+ seed chunks across 9 topics) |
+| `store/ielts-prompts.json` | IELTS sentence and paragraph prompts (40+ seeded) |
 
 The server reads/writes these files on every analyze/delete. Nothing is stored in the browser.
 
@@ -114,6 +117,8 @@ What to try, in order:
 | POST | `/api/chunks` | body: `{ text, meaningVi, topic, difficulty, example, tags[] }` → adds a manual chunk (`source: "manual"`) |
 | DELETE | `/api/chunks/:id` | 404 if not found |
 | POST | `/api/chunks/generate` | body: `{ topic, difficulty, count, model? }` → `{ created, skippedDuplicates, source, model }`. Calls Gemini with mock fallback (when `USE_MOCK_ON_GEMINI_ERROR=true`). |
+| GET | `/api/ielts/prompts?mode=&topic=&difficulty=&search=` | filtered IELTS prompts |
+| GET | `/api/ielts/prompts/random?mode=&topic=&difficulty=` | one random IELTS prompt |
 
 ## Manual test
 
@@ -197,7 +202,8 @@ english-writing-trainer/
 │  └─ data/journalPrompts.ts
 ├─ store/
 │  ├─ writing-history.json
-│  └─ toeic-chunks.json
+│  ├─ toeic-chunks.json
+│  └─ ielts-prompts.json
 ├─ .env.example
 ├─ .gitignore
 ├─ index.html

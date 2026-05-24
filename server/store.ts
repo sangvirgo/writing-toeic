@@ -1,10 +1,21 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import { AppDatabase, ChunkDatabase, ToeicChunk, WritingAttempt } from './types.js';
+import {
+  AppDatabase,
+  ChunkDatabase,
+  IeltsDifficulty,
+  IeltsPracticeMode,
+  IeltsPrompt,
+  IeltsPromptDatabase,
+  IeltsTopic,
+  ToeicChunk,
+  WritingAttempt,
+} from './types.js';
 
 const STORE_DIR = path.resolve(process.cwd(), 'store');
 const HISTORY_FILE = path.join(STORE_DIR, 'writing-history.json');
 const CHUNKS_FILE = path.join(STORE_DIR, 'toeic-chunks.json');
+const IELTS_PROMPTS_FILE = path.join(STORE_DIR, 'ielts-prompts.json');
 
 const EMPTY_HISTORY: AppDatabase = {
   version: 1,
@@ -16,6 +27,12 @@ const EMPTY_CHUNKS: ChunkDatabase = {
   version: 1,
   updatedAt: null,
   chunks: [],
+};
+
+const EMPTY_IELTS_PROMPTS: IeltsPromptDatabase = {
+  version: 1,
+  updatedAt: null,
+  prompts: [],
 };
 
 async function fileExists(filePath: string): Promise<boolean> {
@@ -34,6 +51,13 @@ export async function ensureStoreFiles(): Promise<void> {
   }
   if (!(await fileExists(CHUNKS_FILE))) {
     await fs.writeFile(CHUNKS_FILE, JSON.stringify(EMPTY_CHUNKS, null, 2), 'utf8');
+  }
+  if (!(await fileExists(IELTS_PROMPTS_FILE))) {
+    await fs.writeFile(
+      IELTS_PROMPTS_FILE,
+      JSON.stringify(EMPTY_IELTS_PROMPTS, null, 2),
+      'utf8',
+    );
   }
 }
 
@@ -114,6 +138,50 @@ export async function deleteChunkById(id: string): Promise<boolean> {
 export type PatternFavoriteResult =
   | { ok: true; attempt: WritingAttempt }
   | { ok: false; reason: 'attempt_not_found' | 'pattern_not_found' };
+
+export async function readIeltsPromptDb(): Promise<IeltsPromptDatabase> {
+  await ensureStoreFiles();
+  const db = await readJsonFile<IeltsPromptDatabase>(IELTS_PROMPTS_FILE, 'ielts-prompts.json');
+  if (!db || !Array.isArray(db.prompts)) {
+    throw new Error('ielts-prompts.json has invalid shape.');
+  }
+  return db;
+}
+
+export interface IeltsPromptFilters {
+  mode?: IeltsPracticeMode;
+  topic?: IeltsTopic;
+  difficulty?: IeltsDifficulty;
+  search?: string;
+}
+
+export async function getIeltsPrompts(filters?: IeltsPromptFilters): Promise<IeltsPrompt[]> {
+  const db = await readIeltsPromptDb();
+  let list = db.prompts;
+  if (filters?.mode) list = list.filter((p) => p.mode === filters.mode);
+  if (filters?.topic) list = list.filter((p) => p.topic === filters.topic);
+  if (filters?.difficulty) list = list.filter((p) => p.difficulty === filters.difficulty);
+  if (filters?.search) {
+    const needle = filters.search.toLowerCase();
+    list = list.filter(
+      (p) =>
+        p.question.toLowerCase().includes(needle) ||
+        p.instruction.toLowerCase().includes(needle) ||
+        (p.targetPattern ?? '').toLowerCase().includes(needle) ||
+        p.topic.toLowerCase().includes(needle) ||
+        p.difficulty.toLowerCase().includes(needle),
+    );
+  }
+  return list;
+}
+
+export async function getRandomIeltsPrompt(
+  filters?: IeltsPromptFilters,
+): Promise<IeltsPrompt | null> {
+  const list = await getIeltsPrompts(filters);
+  if (list.length === 0) return null;
+  return list[Math.floor(Math.random() * list.length)];
+}
 
 export async function setPatternFavorite(
   attemptId: string,

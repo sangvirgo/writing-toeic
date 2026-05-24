@@ -5,6 +5,10 @@ import type {
   FeedbackSource,
   GeminiModelId,
   GeminiModelInfo,
+  IeltsDifficulty,
+  IeltsPracticeMode,
+  IeltsPrompt,
+  IeltsTopic,
   PracticeMode,
   ToeicChunk,
   WritingAttempt,
@@ -169,4 +173,38 @@ export async function togglePatternFavorite(
     },
   );
   await handle<{ ok: boolean }>(res);
+}
+
+export interface IeltsPromptFiltersClient {
+  mode?: IeltsPracticeMode;
+  topic?: IeltsTopic;
+  difficulty?: IeltsDifficulty;
+  search?: string;
+}
+
+function ieltsToQuery(filters: IeltsPromptFiltersClient | undefined): string {
+  if (!filters) return '';
+  const params = new URLSearchParams();
+  if (filters.mode) params.set('mode', filters.mode);
+  if (filters.topic) params.set('topic', filters.topic);
+  if (filters.difficulty) params.set('difficulty', filters.difficulty);
+  if (filters.search) params.set('search', filters.search);
+  const qs = params.toString();
+  return qs ? `?${qs}` : '';
+}
+
+export async function getIeltsPrompts(
+  filters?: IeltsPromptFiltersClient,
+): Promise<IeltsPrompt[]> {
+  const res = await fetch(`/api/ielts/prompts${ieltsToQuery(filters)}`);
+  const data = await handle<{ prompts: IeltsPrompt[] }>(res);
+  return data.prompts;
+}
+
+export async function getRandomIeltsPrompt(
+  filters?: IeltsPromptFiltersClient,
+): Promise<IeltsPrompt> {
+  const res = await fetch(`/api/ielts/prompts/random${ieltsToQuery(filters)}`);
+  const data = await handle<{ prompt: IeltsPrompt }>(res);
+  return data.prompt;
 }

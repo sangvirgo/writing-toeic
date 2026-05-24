@@ -1,0 +1,347 @@
+{
+  "version": 1,
+  "updatedAt": null,
+  "prompts": [
+    {
+      "id": "ielts_sentence_education_001",
+      "mode": "ielts_sentence",
+      "topic": "education",
+      "difficulty": "easy",
+      "question": "Many students choose to study online because it gives them more flexibility.",
+      "targetPattern": "It is increasingly common for + noun + to + verb",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about online learning."
+    },
+    {
+      "id": "ielts_sentence_education_002",
+      "mode": "ielts_sentence",
+      "topic": "education",
+      "difficulty": "medium",
+      "question": "University tuition has become very expensive in many countries.",
+      "targetPattern": "One of the main reasons why + clause + is that + clause",
+      "instruction": "Write 2–3 academic sentences explaining a cause using the target pattern."
+    },
+    {
+      "id": "ielts_sentence_technology_001",
+      "mode": "ielts_sentence",
+      "topic": "technology",
+      "difficulty": "easy",
+      "question": "Smartphones have changed the way people communicate every day.",
+      "targetPattern": "Thanks to + noun, + subject + can now + verb",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about technology in daily life."
+    },
+    {
+      "id": "ielts_sentence_technology_002",
+      "mode": "ielts_sentence",
+      "topic": "technology",
+      "difficulty": "hard",
+      "question": "Artificial intelligence is starting to replace some human jobs in modern industries.",
+      "targetPattern": "While + clause, it is also true that + clause",
+      "instruction": "Write 2–3 balanced academic sentences using the target pattern about AI and jobs."
+    },
+    {
+      "id": "ielts_sentence_environment_001",
+      "mode": "ielts_sentence",
+      "topic": "environment",
+      "difficulty": "easy",
+      "question": "Air pollution in large cities affects people's health every year.",
+      "targetPattern": "A growing number of + plural noun + are + verb-ing",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about pollution in cities."
+    },
+    {
+      "id": "ielts_sentence_environment_002",
+      "mode": "ielts_sentence",
+      "topic": "environment",
+      "difficulty": "medium",
+      "question": "Governments are encouraging citizens to use renewable energy at home.",
+      "targetPattern": "In order to + verb, governments should + verb",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about renewable energy policy."
+    },
+    {
+      "id": "ielts_sentence_work_001",
+      "mode": "ielts_sentence",
+      "topic": "work",
+      "difficulty": "easy",
+      "question": "More employees are working from home since the pandemic began.",
+      "targetPattern": "There has been a significant rise in + noun",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about remote work."
+    },
+    {
+      "id": "ielts_sentence_work_002",
+      "mode": "ielts_sentence",
+      "topic": "work",
+      "difficulty": "medium",
+      "question": "Long working hours can harm employees' mental and physical health.",
+      "targetPattern": "Not only + auxiliary + subject + verb, but + subject + also + verb",
+      "instruction": "Write 2–3 academic sentences using the target pattern about working hours."
+    },
+    {
+      "id": "ielts_sentence_health_001",
+      "mode": "ielts_sentence",
+      "topic": "health",
+      "difficulty": "easy",
+      "question": "Regular exercise helps people stay healthy and avoid common illnesses.",
+      "targetPattern": "By + verb-ing, people can + verb",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about healthy habits."
+    },
+    {
+      "id": "ielts_sentence_health_002",
+      "mode": "ielts_sentence",
+      "topic": "health",
+      "difficulty": "hard",
+      "question": "Many young people today eat too much fast food and not enough vegetables.",
+      "targetPattern": "Despite + noun phrase, + clause",
+      "instruction": "Write 2–3 academic sentences using the target pattern about diet and lifestyle."
+    },
+    {
+      "id": "ielts_sentence_government_001",
+      "mode": "ielts_sentence",
+      "topic": "government",
+      "difficulty": "medium",
+      "question": "Local governments often invest in public parks and libraries.",
+      "targetPattern": "It is the responsibility of + noun + to + verb",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about government duties."
+    },
+    {
+      "id": "ielts_sentence_government_002",
+      "mode": "ielts_sentence",
+      "topic": "government",
+      "difficulty": "hard",
+      "question": "Higher taxes on unhealthy food may reduce obesity rates.",
+      "targetPattern": "If + subject + were to + verb, + subject + would + verb",
+      "instruction": "Write 2–3 academic sentences using the target pattern about taxation and health."
+    },
+    {
+      "id": "ielts_sentence_society_001",
+      "mode": "ielts_sentence",
+      "topic": "society",
+      "difficulty": "easy",
+      "question": "Young people today often live far from their parents because of work.",
+      "targetPattern": "Compared with + noun, + clause",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about family life today."
+    },
+    {
+      "id": "ielts_sentence_society_002",
+      "mode": "ielts_sentence",
+      "topic": "society",
+      "difficulty": "medium",
+      "question": "Volunteering helps build stronger communities and personal skills.",
+      "targetPattern": "Not only does + subject + verb, but it also + verb",
+      "instruction": "Write 2–3 academic sentences using the target pattern about volunteering."
+    },
+    {
+      "id": "ielts_sentence_crime_001",
+      "mode": "ielts_sentence",
+      "topic": "crime",
+      "difficulty": "medium",
+      "question": "CCTV cameras in public places may help reduce crime.",
+      "targetPattern": "One possible solution to + noun + is to + verb",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about crime prevention."
+    },
+    {
+      "id": "ielts_sentence_crime_002",
+      "mode": "ielts_sentence",
+      "topic": "crime",
+      "difficulty": "hard",
+      "question": "Some people argue that prison is not the most effective way to reduce repeat offences.",
+      "targetPattern": "Rather than + verb-ing, + subject + should + verb",
+      "instruction": "Write 2–3 academic sentences using the target pattern about punishment and rehabilitation."
+    },
+    {
+      "id": "ielts_sentence_transport_001",
+      "mode": "ielts_sentence",
+      "topic": "transport",
+      "difficulty": "easy",
+      "question": "Traffic jams in big cities waste a lot of people's time every day.",
+      "targetPattern": "One of the biggest problems facing + noun + is + noun",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about urban transport."
+    },
+    {
+      "id": "ielts_sentence_transport_002",
+      "mode": "ielts_sentence",
+      "topic": "transport",
+      "difficulty": "medium",
+      "question": "Cycling to work is becoming more popular in many cities.",
+      "targetPattern": "Encouraging people to + verb + could + verb",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about sustainable transport."
+    },
+    {
+      "id": "ielts_sentence_media_001",
+      "mode": "ielts_sentence",
+      "topic": "media",
+      "difficulty": "easy",
+      "question": "Many people now read the news on their phones instead of newspapers.",
+      "targetPattern": "A large number of + plural noun + tend to + verb",
+      "instruction": "Write 2–3 IELTS-style sentences using the target pattern about how people consume news."
+    },
+    {
+      "id": "ielts_sentence_media_002",
+      "mode": "ielts_sentence",
+      "topic": "media",
+      "difficulty": "hard",
+      "question": "Social media influencers have a strong effect on young people's choices.",
+      "targetPattern": "It can be argued that + clause",
+      "instruction": "Write 2–3 academic sentences using the target pattern about influencers and society."
+    },
+
+    {
+      "id": "ielts_paragraph_education_001",
+      "mode": "ielts_paragraph",
+      "topic": "education",
+      "difficulty": "medium",
+      "question": "Some people believe that online learning is as effective as traditional classroom learning. To what extent do you agree or disagree?",
+      "instruction": "Write one body paragraph of 80–120 words. Include a topic sentence, explanation, example, and result."
+    },
+    {
+      "id": "ielts_paragraph_education_002",
+      "mode": "ielts_paragraph",
+      "topic": "education",
+      "difficulty": "hard",
+      "question": "Some governments believe that university education should be free for all citizens. Discuss the advantages and disadvantages of this policy.",
+      "instruction": "Write one body paragraph of 80–120 words focusing on either an advantage or a disadvantage."
+    },
+    {
+      "id": "ielts_paragraph_technology_001",
+      "mode": "ielts_paragraph",
+      "topic": "technology",
+      "difficulty": "medium",
+      "question": "Some people think that children should not be allowed to use smartphones until they are 16. Do you agree or disagree?",
+      "instruction": "Write one body paragraph of 80–120 words with a clear topic sentence and at least one example."
+    },
+    {
+      "id": "ielts_paragraph_technology_002",
+      "mode": "ielts_paragraph",
+      "topic": "technology",
+      "difficulty": "hard",
+      "question": "Artificial intelligence will replace many jobs in the next 20 years. Do the advantages of this trend outweigh the disadvantages?",
+      "instruction": "Write one body paragraph of 80–120 words. Use topic sentence + explanation + example + result."
+    },
+    {
+      "id": "ielts_paragraph_environment_001",
+      "mode": "ielts_paragraph",
+      "topic": "environment",
+      "difficulty": "easy",
+      "question": "Some people believe that individuals can do little to reduce climate change and that only governments and big companies can make a difference. To what extent do you agree?",
+      "instruction": "Write one body paragraph of 80–120 words. Stay focused on one side of the argument."
+    },
+    {
+      "id": "ielts_paragraph_environment_002",
+      "mode": "ielts_paragraph",
+      "topic": "environment",
+      "difficulty": "medium",
+      "question": "Plastic waste is becoming a serious problem in many countries. What are the causes, and what can be done to solve this problem?",
+      "instruction": "Write one body paragraph of 80–120 words focusing on one cause or one solution."
+    },
+    {
+      "id": "ielts_paragraph_work_001",
+      "mode": "ielts_paragraph",
+      "topic": "work",
+      "difficulty": "medium",
+      "question": "Some people think that working from home is better than working in an office. To what extent do you agree or disagree?",
+      "instruction": "Write one body paragraph of 80–120 words with a clear topic sentence, explanation, and example."
+    },
+    {
+      "id": "ielts_paragraph_work_002",
+      "mode": "ielts_paragraph",
+      "topic": "work",
+      "difficulty": "hard",
+      "question": "Some companies have started a four-day working week. Do the advantages of this change outweigh the disadvantages?",
+      "instruction": "Write one body paragraph of 80–120 words. Include a topic sentence, explanation, example, and result."
+    },
+    {
+      "id": "ielts_paragraph_health_001",
+      "mode": "ielts_paragraph",
+      "topic": "health",
+      "difficulty": "easy",
+      "question": "Some people believe that schools should give students more time for physical activities, even if this reduces academic study time. Do you agree or disagree?",
+      "instruction": "Write one body paragraph of 80–120 words. Use a clear topic sentence and at least one example."
+    },
+    {
+      "id": "ielts_paragraph_health_002",
+      "mode": "ielts_paragraph",
+      "topic": "health",
+      "difficulty": "hard",
+      "question": "Fast food is now widely available in many countries. What are the effects of this on individuals and society, and what can be done about it?",
+      "instruction": "Write one body paragraph of 80–120 words on either the effects or one possible solution."
+    },
+    {
+      "id": "ielts_paragraph_government_001",
+      "mode": "ielts_paragraph",
+      "topic": "government",
+      "difficulty": "medium",
+      "question": "Some people think that governments should spend more money on public transport rather than on building new roads. To what extent do you agree or disagree?",
+      "instruction": "Write one body paragraph of 80–120 words with topic sentence, explanation, example, and result."
+    },
+    {
+      "id": "ielts_paragraph_government_002",
+      "mode": "ielts_paragraph",
+      "topic": "government",
+      "difficulty": "hard",
+      "question": "Some people believe that governments should make voting compulsory in national elections. Discuss both views and give your opinion.",
+      "instruction": "Write one body paragraph of 80–120 words focusing on one of the two views."
+    },
+    {
+      "id": "ielts_paragraph_society_001",
+      "mode": "ielts_paragraph",
+      "topic": "society",
+      "difficulty": "easy",
+      "question": "In many countries, fewer young people are getting married. What are the causes of this trend, and what effects does it have on society?",
+      "instruction": "Write one body paragraph of 80–120 words on one cause or one effect."
+    },
+    {
+      "id": "ielts_paragraph_society_002",
+      "mode": "ielts_paragraph",
+      "topic": "society",
+      "difficulty": "medium",
+      "question": "Some people believe that volunteer work should be a required part of high school education. To what extent do you agree or disagree?",
+      "instruction": "Write one body paragraph of 80–120 words with a clear topic sentence and example."
+    },
+    {
+      "id": "ielts_paragraph_crime_001",
+      "mode": "ielts_paragraph",
+      "topic": "crime",
+      "difficulty": "medium",
+      "question": "Some people think that long prison sentences are the most effective way to reduce crime. Others believe that education and rehabilitation work better. Discuss both views and give your opinion.",
+      "instruction": "Write one body paragraph of 80–120 words on one of the two views."
+    },
+    {
+      "id": "ielts_paragraph_crime_002",
+      "mode": "ielts_paragraph",
+      "topic": "crime",
+      "difficulty": "hard",
+      "question": "Online crime, such as identity theft and fraud, is increasing every year. What are the main causes of this problem, and what can governments and individuals do to reduce it?",
+      "instruction": "Write one body paragraph of 80–120 words focusing on one cause or one solution."
+    },
+    {
+      "id": "ielts_paragraph_transport_001",
+      "mode": "ielts_paragraph",
+      "topic": "transport",
+      "difficulty": "easy",
+      "question": "Traffic congestion is becoming a serious problem in many large cities. What are the main causes, and how can it be reduced?",
+      "instruction": "Write one body paragraph of 80–120 words on one cause or one solution."
+    },
+    {
+      "id": "ielts_paragraph_transport_002",
+      "mode": "ielts_paragraph",
+      "topic": "transport",
+      "difficulty": "medium",
+      "question": "Some people think that the best way to reduce pollution is to make private car use more expensive. To what extent do you agree or disagree?",
+      "instruction": "Write one body paragraph of 80–120 words with topic sentence, explanation, example, and result."
+    },
+    {
+      "id": "ielts_paragraph_media_001",
+      "mode": "ielts_paragraph",
+      "topic": "media",
+      "difficulty": "medium",
+      "question": "Some people think that the news media should focus more on positive stories instead of negative events. To what extent do you agree or disagree?",
+      "instruction": "Write one body paragraph of 80–120 words focusing on one side of the argument."
+    },
+    {
+      "id": "ielts_paragraph_media_002",
+      "mode": "ielts_paragraph",
+      "topic": "media",
+      "difficulty": "hard",
+      "question": "Social media has changed how people communicate and access information. Do the benefits of social media outweigh the drawbacks?",
+      "instruction": "Write one body paragraph of 80–120 words. Use topic sentence + explanation + example + result."
+    }
+  ]
+}

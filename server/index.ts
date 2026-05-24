@@ -6,6 +6,8 @@ import {
   appendAttempt,
   deleteAttempt,
   ensureStoreFiles,
+  getIeltsPrompts,
+  getRandomIeltsPrompt,
   readHistoryDb,
   setPatternFavorite,
 } from './store.js';
@@ -31,6 +33,9 @@ import {
   FeedbackSource,
   GEMINI_MODELS,
   GeminiModelId,
+  IeltsDifficulty,
+  IeltsPracticeMode,
+  IeltsTopic,
   isValidGeminiModel,
   PracticeMode,
   WritingAttempt,
@@ -39,7 +44,13 @@ import {
 const app = express();
 const PORT = Number(process.env.PORT) || 3001;
 const MAX_WRITING_LENGTH = 5000;
-const VALID_MODES: PracticeMode[] = ['toeic_chunk', 'daily_journal', 'mistake_review'];
+const VALID_MODES: PracticeMode[] = [
+  'toeic_chunk',
+  'daily_journal',
+  'mistake_review',
+  'ielts_sentence',
+  'ielts_paragraph',
+];
 const VALID_TOPICS: ChunkTopic[] = [
   'meeting',
   'office',
@@ -52,6 +63,20 @@ const VALID_TOPICS: ChunkTopic[] = [
   'general',
 ];
 const VALID_DIFFICULTIES: ChunkDifficulty[] = ['easy', 'medium', 'hard'];
+const VALID_IELTS_TOPICS: IeltsTopic[] = [
+  'education',
+  'technology',
+  'environment',
+  'work',
+  'health',
+  'government',
+  'society',
+  'crime',
+  'transport',
+  'media',
+];
+const VALID_IELTS_DIFFICULTIES: IeltsDifficulty[] = ['easy', 'medium', 'hard'];
+const VALID_IELTS_MODES: IeltsPracticeMode[] = ['ielts_sentence', 'ielts_paragraph'];
 
 app.use(express.json({ limit: '1mb' }));
 
@@ -87,7 +112,7 @@ app.post('/api/analyze', async (req: Request, res: Response, next: NextFunction)
     if (!mode || !VALID_MODES.includes(mode)) {
       return res
         .status(400)
-        .json({ error: 'mode is required and must be "toeic_chunk", "daily_journal", or "mistake_review".' });
+        .json({ error: 'mode is required and must be "toeic_chunk", "daily_journal", "mistake_review", "ielts_sentence", or "ielts_paragraph".' });
     }
     if (typeof prompt !== 'string' || prompt.trim().length === 0) {
       return res.status(400).json({ error: 'prompt is required.' });
@@ -292,6 +317,34 @@ app.patch('/api/history/:attemptId/patterns/:patternIndex/favorite', async (req,
   }
 });
 
+app.get('/api/ielts/prompts', async (req, res, next) => {
+  try {
+    const mode = parseIeltsMode(req.query.mode);
+    const topic = parseIeltsTopic(req.query.topic);
+    const difficulty = parseIeltsDifficulty(req.query.difficulty);
+    const search = typeof req.query.search === 'string' ? req.query.search : undefined;
+    const prompts = await getIeltsPrompts({ mode, topic, difficulty, search });
+    res.json({ prompts });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/ielts/prompts/random', async (req, res, next) => {
+  try {
+    const mode = parseIeltsMode(req.query.mode);
+    const topic = parseIeltsTopic(req.query.topic);
+    const difficulty = parseIeltsDifficulty(req.query.difficulty);
+    const prompt = await getRandomIeltsPrompt({ mode, topic, difficulty });
+    if (!prompt) {
+      return res.status(404).json({ error: 'No IELTS prompts match the given filters.' });
+    }
+    res.json({ prompt });
+  } catch (err) {
+    next(err);
+  }
+});
+
 function chunkValidationMessage(
   err:
     | 'text_required'
@@ -336,6 +389,25 @@ function parseDifficulty(value: unknown): ChunkDifficulty | undefined {
   if (typeof value !== 'string' || value.length === 0) return undefined;
   return VALID_DIFFICULTIES.includes(value as ChunkDifficulty)
     ? (value as ChunkDifficulty)
+    : undefined;
+}
+
+function parseIeltsMode(value: unknown): IeltsPracticeMode | undefined {
+  if (typeof value !== 'string' || value.length === 0) return undefined;
+  return VALID_IELTS_MODES.includes(value as IeltsPracticeMode)
+    ? (value as IeltsPracticeMode)
+    : undefined;
+}
+
+function parseIeltsTopic(value: unknown): IeltsTopic | undefined {
+  if (typeof value !== 'string' || value.length === 0) return undefined;
+  return VALID_IELTS_TOPICS.includes(value as IeltsTopic) ? (value as IeltsTopic) : undefined;
+}
+
+function parseIeltsDifficulty(value: unknown): IeltsDifficulty | undefined {
+  if (typeof value !== 'string' || value.length === 0) return undefined;
+  return VALID_IELTS_DIFFICULTIES.includes(value as IeltsDifficulty)
+    ? (value as IeltsDifficulty)
     : undefined;
 }
 

@@ -84,6 +84,8 @@ export function LearningStats({ attempts, chunks }: Props) {
     let toeicCount = 0;
     let journalCount = 0;
     let mistakeReviewCount = 0;
+    let ieltsSentenceCount = 0;
+    let ieltsParagraphCount = 0;
     let grammarMistakes = 0;
     let vocabMistakes = 0;
     let naturalnessMistakes = 0;
@@ -96,6 +98,8 @@ export function LearningStats({ attempts, chunks }: Props) {
       if (a.mode === 'toeic_chunk') toeicCount++;
       else if (a.mode === 'daily_journal') journalCount++;
       else if (a.mode === 'mistake_review') mistakeReviewCount++;
+      else if (a.mode === 'ielts_sentence') ieltsSentenceCount++;
+      else if (a.mode === 'ielts_paragraph') ieltsParagraphCount++;
 
       for (const m of a.feedback.mistakes) {
         if (m.type === 'grammar') grammarMistakes++;
@@ -125,6 +129,9 @@ export function LearningStats({ attempts, chunks }: Props) {
       toeicCount,
       journalCount,
       mistakeReviewCount,
+      ieltsSentenceCount,
+      ieltsParagraphCount,
+      ieltsTotal: ieltsSentenceCount + ieltsParagraphCount,
       totalMistakes,
       grammarMistakes,
       vocabMistakes,
@@ -174,6 +181,9 @@ export function LearningStats({ attempts, chunks }: Props) {
         <StatCard label="Total attempts" value={stats.totalAttempts} />
         <StatCard label="TOEIC chunk" value={stats.toeicCount} />
         <StatCard label="Daily journal" value={stats.journalCount} />
+        <StatCard label="IELTS sentence" value={stats.ieltsSentenceCount} />
+        <StatCard label="IELTS paragraph" value={stats.ieltsParagraphCount} />
+        <StatCard label="IELTS total" value={stats.ieltsTotal} />
         <StatCard label="Mistake review" value={stats.mistakeReviewCount} />
         <StatCard label="Total mistakes" value={stats.totalMistakes} />
         <StatCard label="Grammar mistakes" value={stats.grammarMistakes} />

@@ -1,6 +1,52 @@
-export type PracticeMode = 'toeic_chunk' | 'daily_journal' | 'mistake_review';
+export type PracticeMode =
+  | 'toeic_chunk'
+  | 'daily_journal'
+  | 'mistake_review'
+  | 'ielts_sentence'
+  | 'ielts_paragraph';
+
+export type IeltsPracticeMode = 'ielts_sentence' | 'ielts_paragraph';
+
+export type IeltsTopic =
+  | 'education'
+  | 'technology'
+  | 'environment'
+  | 'work'
+  | 'health'
+  | 'government'
+  | 'society'
+  | 'crime'
+  | 'transport'
+  | 'media';
+
+export type IeltsDifficulty = 'easy' | 'medium' | 'hard';
+
+export interface IeltsPrompt {
+  id: string;
+  mode: IeltsPracticeMode;
+  topic: IeltsTopic;
+  difficulty: IeltsDifficulty;
+  question: string;
+  targetPattern?: string;
+  instruction: string;
+}
+
+export interface IeltsPromptDatabase {
+  version: number;
+  updatedAt: string | null;
+  prompts: IeltsPrompt[];
+}
 
 export type MistakeType = 'grammar' | 'vocabulary' | 'naturalness' | 'structure';
+
+export interface IeltsFeedback {
+  estimatedBand?: number;
+  taskResponse?: number;
+  coherenceCohesion?: number;
+  lexicalResource?: number;
+  grammaticalRangeAccuracy?: number;
+  mainAdvice?: string[];
+}
 
 export interface AiFeedback {
   correctedVersion: string;
@@ -25,6 +71,7 @@ export interface AiFeedback {
     front: string;
     back: string;
   }[];
+  ielts?: IeltsFeedback;
 }
 
 export interface WritingAttempt {

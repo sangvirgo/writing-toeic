@@ -1,4 +1,4 @@
-import type { PracticeMode, ToeicChunk } from '../types';
+import type { IeltsPracticeMode, IeltsPrompt, PracticeMode, ToeicChunk } from '../types';
 import type { MistakeEntry } from './MistakeReview';
 import { randomPrompt } from '../data/journalPrompts';
 
@@ -21,6 +21,14 @@ interface Props {
   mistakeWriting: string;
   onMistakeWritingChange: (value: string) => void;
 
+  ieltsSubmode: IeltsPracticeMode;
+  onIeltsSubmodeChange: (submode: IeltsPracticeMode) => void;
+  ieltsPrompt: IeltsPrompt | null;
+  ieltsWriting: string;
+  onIeltsWritingChange: (value: string) => void;
+  onGenerateIeltsPrompt: () => Promise<void> | void;
+  isLoadingIeltsPrompt: boolean;
+
   onAnalyze: () => Promise<void> | void;
   isAnalyzing: boolean;
   errorMessage: string | null;
@@ -41,53 +49,78 @@ export function PracticePanel({
   selectedMistake,
   mistakeWriting,
   onMistakeWritingChange,
+  ieltsSubmode,
+  onIeltsSubmodeChange,
+  ieltsPrompt,
+  ieltsWriting,
+  onIeltsWritingChange,
+  onGenerateIeltsPrompt,
+  isLoadingIeltsPrompt,
   onAnalyze,
   isAnalyzing,
   errorMessage,
 }: Props) {
+  const isIelts = mode === 'ielts_sentence' || mode === 'ielts_paragraph';
+
   const currentWriting =
     mode === 'toeic_chunk'
       ? chunkWriting
       : mode === 'daily_journal'
         ? journalWriting
-        : mistakeWriting;
+        : isIelts
+          ? ieltsWriting
+          : mistakeWriting;
 
   const setWriting =
     mode === 'toeic_chunk'
       ? onChunkWritingChange
       : mode === 'daily_journal'
         ? onJournalWritingChange
-        : onMistakeWritingChange;
+        : isIelts
+          ? onIeltsWritingChange
+          : onMistakeWritingChange;
 
   const hasPrompt =
     mode === 'toeic_chunk'
       ? !!chunk
       : mode === 'daily_journal'
         ? !!journalPrompt
-        : !!selectedMistake;
+        : isIelts
+          ? !!ieltsPrompt
+          : !!selectedMistake;
 
   const placeholder =
     mode === 'toeic_chunk'
       ? 'Write 2–3 sentences using this chunk...'
       : mode === 'daily_journal'
         ? 'Write your daily journal in English...'
-        : 'Write 2–3 new sentences using the corrected pattern...';
+        : mode === 'ielts_sentence'
+          ? 'Write 2–3 IELTS-style sentences using the target pattern...'
+          : mode === 'ielts_paragraph'
+            ? 'Write one body paragraph of 80–120 words...'
+            : 'Write 2–3 new sentences using the corrected pattern...';
 
   function handleGenerate() {
     if (mode === 'toeic_chunk') {
       void onGenerateChunk();
     } else if (mode === 'daily_journal') {
       onJournalPromptChange(randomPrompt(journalPrompt));
+    } else if (isIelts) {
+      void onGenerateIeltsPrompt();
     }
   }
 
-  const showGenerate = mode === 'toeic_chunk' || mode === 'daily_journal';
+  const showGenerate = mode === 'toeic_chunk' || mode === 'daily_journal' || isIelts;
   const analyzeLabel =
     mode === 'toeic_chunk'
       ? 'Analyze Writing'
       : mode === 'daily_journal'
         ? 'Analyze Journal'
-        : 'Analyze Practice';
+        : mode === 'ielts_sentence'
+          ? 'Analyze IELTS Sentence'
+          : mode === 'ielts_paragraph'
+            ? 'Analyze IELTS Paragraph'
+            : 'Analyze Practice';
 
   return (
     <section className="panel">
@@ -110,6 +143,13 @@ export function PracticePanel({
         </button>
         <button
           role="tab"
+          className={isIelts ? 'tab active' : 'tab'}
+          onClick={() => onModeChange(ieltsSubmode)}
+        >
+          IELTS Practice
+        </button>
+        <button
+          role="tab"
           className={mode === 'mistake_review' ? 'tab active' : 'tab'}
           onClick={() => onModeChange('mistake_review')}
         >
@@ -117,18 +157,43 @@ export function PracticePanel({
         </button>
       </div>
 
+      {isIelts && (
+        <div className="ielts-submode-selector">
+          <button
+            type="button"
+            className={`btn small ${ieltsSubmode === 'ielts_sentence' ? 'primary' : 'secondary'}`}
+            onClick={() => onIeltsSubmodeChange('ielts_sentence')}
+          >
+            Sentence Builder
+          </button>
+          <button
+            type="button"
+            className={`btn small ${ieltsSubmode === 'ielts_paragraph' ? 'primary' : 'secondary'}`}
+            onClick={() => onIeltsSubmodeChange('ielts_paragraph')}
+          >
+            Paragraph Builder
+          </button>
+        </div>
+      )}
+
       {showGenerate && (
         <button
           type="button"
           className="btn secondary"
           onClick={handleGenerate}
-          disabled={isLoadingChunk}
+          disabled={isLoadingChunk || isLoadingIeltsPrompt}
         >
           {mode === 'toeic_chunk'
             ? isLoadingChunk
               ? 'Loading…'
               : 'Generate Chunk'
-            : 'Generate Journal Prompt'}
+            : mode === 'daily_journal'
+              ? 'Generate Journal Prompt'
+              : isLoadingIeltsPrompt
+                ? 'Loading…'
+                : mode === 'ielts_sentence'
+                  ? 'Generate IELTS Sentence Prompt'
+                  : 'Generate IELTS Paragraph Prompt'}
         </button>
       )}
 
@@ -148,6 +213,37 @@ export function PracticePanel({
         <div className="prompt-card">
           <span className="prompt-label">Journal prompt</span>
           <strong className="prompt-text">{journalPrompt}</strong>
+        </div>
+      )}
+
+      {isIelts && !ieltsPrompt && (
+        <div className="prompt-card empty-state">
+          <p>Click the button above to generate an IELTS prompt.</p>
+        </div>
+      )}
+
+      {isIelts && ieltsPrompt && (
+        <div className="prompt-card ielts-prompt-card">
+          <div className="ielts-prompt-meta">
+            <span className={`tag tag-${ieltsPrompt.difficulty}`}>{ieltsPrompt.difficulty}</span>
+            <span className={`tag tag-${ieltsPrompt.topic}`}>{ieltsPrompt.topic}</span>
+            <span className="tag tag-ielts">
+              {ieltsPrompt.mode === 'ielts_sentence' ? 'Sentence' : 'Paragraph'}
+            </span>
+          </div>
+          <div className="ielts-prompt-question">
+            <strong>{ieltsPrompt.question}</strong>
+          </div>
+          {ieltsPrompt.targetPattern && (
+            <div className="ielts-prompt-pattern">
+              <span className="prompt-label">Target pattern</span>
+              <code>{ieltsPrompt.targetPattern}</code>
+            </div>
+          )}
+          <div className="ielts-prompt-instruction">
+            <span className="prompt-label">Task</span>
+            <span>{ieltsPrompt.instruction}</span>
+          </div>
         </div>
       )}
 

@@ -58,6 +58,8 @@ export function HistoryList({ attempts, onDelete, onToggleFavorite, isLoading }:
             <option value="all">All</option>
             <option value="toeic_chunk">TOEIC Chunk</option>
             <option value="daily_journal">Daily Journal</option>
+            <option value="ielts_sentence">IELTS Sentence</option>
+            <option value="ielts_paragraph">IELTS Paragraph</option>
             <option value="mistake_review">Mistake Review</option>
           </select>
           <input
@@ -85,7 +87,11 @@ export function HistoryList({ attempts, onDelete, onToggleFavorite, isLoading }:
                     ? 'TOEIC Chunk'
                     : a.mode === 'daily_journal'
                       ? 'Daily Journal'
-                      : 'Mistake Review'}
+                      : a.mode === 'ielts_sentence'
+                        ? 'IELTS Sentence'
+                        : a.mode === 'ielts_paragraph'
+                          ? 'IELTS Paragraph'
+                          : 'Mistake Review'}
                 </span>
                 <span className="muted history-date">
                   {new Date(a.createdAt).toLocaleString()}

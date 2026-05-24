@@ -156,6 +156,12 @@ function clampScore(n: unknown): number {
   return Math.max(0, Math.min(10, Math.round(v)));
 }
 
+function clampIeltsBand(n: unknown): number {
+  const v = typeof n === 'number' ? n : Number(n);
+  if (!Number.isFinite(v)) return 0;
+  return Math.round(Math.max(0, Math.min(9, v)) * 10) / 10;
+}
+
 function validateFeedback(raw: unknown): AiFeedback {
   if (!raw || typeof raw !== 'object') {
     throw new Error('Gemini JSON is not an object.');
@@ -205,20 +211,38 @@ function validateFeedback(raw: unknown): AiFeedback {
   if (!feedback.correctedVersion || !feedback.naturalVersion) {
     throw new Error('Gemini JSON is missing correctedVersion or naturalVersion.');
   }
+
+  if (o.ielts && typeof o.ielts === 'object') {
+    const raw = o.ielts as Record<string, unknown>;
+    const ielts: AiFeedback['ielts'] = {
+      estimatedBand: clampIeltsBand(raw.estimatedBand),
+      taskResponse: clampIeltsBand(raw.taskResponse),
+      coherenceCohesion: clampIeltsBand(raw.coherenceCohesion),
+      lexicalResource: clampIeltsBand(raw.lexicalResource),
+      grammaticalRangeAccuracy: clampIeltsBand(raw.grammaticalRangeAccuracy),
+      mainAdvice: Array.isArray(raw.mainAdvice)
+        ? raw.mainAdvice.filter((s) => typeof s === 'string')
+        : undefined,
+    };
+    feedback.ielts = ielts;
+  }
+
   return feedback;
 }
 
 function buildSystemInstruction(): string {
   return [
-    'You are an English writing coach for a Vietnamese learner who wants to use English at work.',
+    'You are an English writing coach for a Vietnamese learner.',
     'Always respond with a single JSON object that exactly matches the schema the user describes.',
     'Rules:',
-    '- Keep corrections natural and practical for office/business contexts.',
+    '- Keep corrections natural and practical.',
     '- Do not overcorrect into overly literary or advanced English.',
     '- Preserve the user\'s intended meaning.',
     '- Explanations must be short, clear, and helpful for an intermediate Vietnamese learner. You may include short Vietnamese hints in parentheses when useful.',
     '- All score fields are integers from 0 to 10.',
     '- mistake.type must be one of: grammar, vocabulary, naturalness, structure.',
+    '- For IELTS modes, also include the optional "ielts" object when requested.',
+    '- IELTS band scores must be between 0 and 9 (one decimal place allowed).',
     '- Never include markdown fences, comments, or explanations outside the JSON.',
   ].join('\n');
 }
@@ -251,6 +275,34 @@ function buildUserPrompt(input: GeminiInput): string {
       '  - still sounds like simple, realistic workplace English.',
       'Acknowledge improvement when the previous mistake is gone. Keep explanations short and practical.',
     ].join('\n');
+  } else if (mode === 'ielts_sentence') {
+    modeBlock = [
+      'Practice mode: IELTS Sentence Builder (Level 1).',
+      `Prompt/task: "${prompt}".`,
+      'Your job:',
+      '- Correct grammar mistakes.',
+      '- Improve naturalness and academic tone.',
+      '- Make the sentences more IELTS-appropriate but keep them realistic, not overly advanced.',
+      '- Check whether the target pattern was used correctly (if a target pattern is included in the prompt).',
+      '- Give useful academic sentence patterns.',
+      '- Explain mistakes simply for a Vietnamese learner.',
+    ].join('\n');
+  } else if (mode === 'ielts_paragraph') {
+    modeBlock = [
+      'Practice mode: IELTS Paragraph Builder (Level 2).',
+      `Prompt/task: "${prompt}".`,
+      'Your job — check the paragraph for:',
+      '- Topic sentence (clear, relevant)',
+      '- Development (explanation, reasoning)',
+      '- Example (concrete support)',
+      '- Coherence and cohesion (logical flow, linking words)',
+      '- Lexical resource (vocabulary range and accuracy)',
+      '- Grammatical range and accuracy',
+      '- Whether the paragraph answers the prompt',
+      '- Whether the paragraph is around 80–120 words (note if it is too short or too long)',
+      '',
+      'Also include an "ielts" object in the JSON with estimated band scores (0–9) and advice.',
+    ].join('\n');
   } else {
     modeBlock = [
       'Practice mode: Daily English journal.',
@@ -258,6 +310,21 @@ function buildUserPrompt(input: GeminiInput): string {
       'Correct grammar, make it sound natural and realistic, keep the style simple.',
     ].join('\n');
   }
+
+  const ieltsSchema =
+    mode === 'ielts_sentence' || mode === 'ielts_paragraph'
+      ? [
+          ',',
+          '  "ielts": {',
+          '    "estimatedBand": 6.5,',
+          '    "taskResponse": 6,',
+          '    "coherenceCohesion": 7,',
+          '    "lexicalResource": 6,',
+          '    "grammaticalRangeAccuracy": 6,',
+          '    "mainAdvice": ["string"]',
+          '  }',
+        ].join('\n')
+      : '';
 
   return [
     modeBlock,
@@ -277,6 +344,7 @@ function buildUserPrompt(input: GeminiInput): string {
     '  ],',
     '  "usefulPatterns": [ { "pattern": "string", "example": "string" } ],',
     '  "ankiCards": [ { "front": "string", "back": "string" } ]',
+    ieltsSchema,
     '}',
   ].join('\n');
 }

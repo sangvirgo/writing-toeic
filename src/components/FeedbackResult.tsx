@@ -133,6 +133,54 @@ export function FeedbackResult({ attempt, source, model, onToggleFavorite }: Pro
           </ul>
         </div>
       )}
+
+      {feedback.ielts && (
+        <div className="feedback-block ielts-feedback-section">
+          <h3>IELTS Feedback</h3>
+          <div className="ielts-scores-grid">
+            {feedback.ielts.estimatedBand != null && (
+              <div className="score-card ielts-band-card">
+                <div className="score-label">Estimated Band</div>
+                <div className="score-value">{feedback.ielts.estimatedBand}</div>
+              </div>
+            )}
+            {feedback.ielts.taskResponse != null && (
+              <div className="score-card">
+                <div className="score-label">Task Response</div>
+                <div className="score-value">{feedback.ielts.taskResponse}<span className="score-suffix">/9</span></div>
+              </div>
+            )}
+            {feedback.ielts.coherenceCohesion != null && (
+              <div className="score-card">
+                <div className="score-label">Coherence &amp; Cohesion</div>
+                <div className="score-value">{feedback.ielts.coherenceCohesion}<span className="score-suffix">/9</span></div>
+              </div>
+            )}
+            {feedback.ielts.lexicalResource != null && (
+              <div className="score-card">
+                <div className="score-label">Lexical Resource</div>
+                <div className="score-value">{feedback.ielts.lexicalResource}<span className="score-suffix">/9</span></div>
+              </div>
+            )}
+            {feedback.ielts.grammaticalRangeAccuracy != null && (
+              <div className="score-card">
+                <div className="score-label">Grammar Range &amp; Accuracy</div>
+                <div className="score-value">{feedback.ielts.grammaticalRangeAccuracy}<span className="score-suffix">/9</span></div>
+              </div>
+            )}
+          </div>
+          {feedback.ielts.mainAdvice && feedback.ielts.mainAdvice.length > 0 && (
+            <div className="ielts-advice">
+              <h4>Main Advice</h4>
+              <ul>
+                {feedback.ielts.mainAdvice.map((tip, i) => (
+                  <li key={i}>{tip}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 }

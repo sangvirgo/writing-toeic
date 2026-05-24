@@ -347,6 +347,17 @@ html, body, #root {
   color: #6b21a8;
 }
 
+.tag-ielts_sentence,
+.tag-ielts_paragraph {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.tag-ielts {
+  background: #bfdbfe;
+  color: #1e3a8a;
+}
+
 .mistake-review-panel {
   margin-top: 16px;
 }
@@ -842,4 +853,77 @@ html, body, #root {
 .source-badge.source-ai {
   background: #bbf7d0;
   color: #166534;
+}
+
+/* ---------- IELTS ---------- */
+.ielts-submode-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ielts-prompt-card {
+  gap: 8px;
+}
+
+.ielts-prompt-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ielts-prompt-question {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ielts-prompt-pattern code {
+  background: #eef2ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.ielts-prompt-instruction {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.ielts-feedback-section {
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  padding: 16px;
+  background: #eff6ff;
+}
+
+.ielts-scores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.ielts-band-card {
+  border-color: #3b82f6;
+  background: #dbeafe;
+}
+
+.ielts-band-card .score-value {
+  color: #1d4ed8;
+}
+
+.ielts-advice h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.ielts-advice ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 14px;
 }

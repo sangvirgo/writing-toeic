@@ -24,6 +24,8 @@ const MODE_LABEL: Record<PracticeMode, string> = {
   toeic_chunk: 'TOEIC Chunk Practice',
   daily_journal: 'Daily Journal',
   mistake_review: 'Mistake Review',
+  ielts_sentence: 'IELTS Sentence',
+  ielts_paragraph: 'IELTS Paragraph',
 };
 
 export function MistakeReview({ attempts, onPractice }: Props) {

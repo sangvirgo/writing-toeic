@@ -17,6 +17,7 @@ import {
   getHistory,
   getModels,
   getRandomChunk,
+  getRandomIeltsPrompt,
   togglePatternFavorite,
 } from './api/client';
 import { randomPrompt } from './data/journalPrompts';
@@ -24,6 +25,8 @@ import type {
   FeedbackSource,
   GeminiModelId,
   GeminiModelInfo,
+  IeltsPracticeMode,
+  IeltsPrompt,
   PracticeMode,
   ToeicChunk,
   WritingAttempt,
@@ -41,6 +44,11 @@ export default function App() {
 
   const [selectedMistake, setSelectedMistake] = useState<MistakeEntry | null>(null);
   const [mistakeWriting, setMistakeWriting] = useState('');
+
+  const [ieltsSubmode, setIeltsSubmode] = useState<IeltsPracticeMode>('ielts_sentence');
+  const [ieltsPrompt, setIeltsPrompt] = useState<IeltsPrompt | null>(null);
+  const [ieltsWriting, setIeltsWriting] = useState('');
+  const [isLoadingIeltsPrompt, setIsLoadingIeltsPrompt] = useState(false);
 
   const [latest, setLatest] = useState<WritingAttempt | null>(null);
   const [latestSource, setLatestSource] = useState<FeedbackSource | null>(null);
@@ -92,6 +100,20 @@ export default function App() {
     }
   }, []);
 
+  const fetchIeltsPrompt = useCallback(async () => {
+    setIsLoadingIeltsPrompt(true);
+    setPracticeError(null);
+    try {
+      const next = await getRandomIeltsPrompt({ mode: ieltsSubmode });
+      setIeltsPrompt(next);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to load IELTS prompt.';
+      setPracticeError(message);
+    } finally {
+      setIsLoadingIeltsPrompt(false);
+    }
+  }, [ieltsSubmode]);
+
   useEffect(() => {
     void reloadHistory();
     void reloadChunks();
@@ -129,6 +151,19 @@ export default function App() {
     } else if (mode === 'daily_journal') {
       prompt = journalPrompt;
       userWriting = journalWriting;
+    } else if (mode === 'ielts_sentence' || mode === 'ielts_paragraph') {
+      prompt = ieltsPrompt
+        ? [
+            ieltsPrompt.question,
+            ieltsPrompt.targetPattern
+              ? `Target pattern: ${ieltsPrompt.targetPattern}`
+              : '',
+            ieltsPrompt.instruction,
+          ]
+            .filter(Boolean)
+            .join('\n')
+        : '';
+      userWriting = ieltsWriting;
     } else {
       if (!selectedMistake) return;
       prompt = buildMistakeTaskPrompt(selectedMistake);
@@ -233,6 +268,13 @@ export default function App() {
           selectedMistake={selectedMistake}
           mistakeWriting={mistakeWriting}
           onMistakeWritingChange={setMistakeWriting}
+          ieltsSubmode={ieltsSubmode}
+          onIeltsSubmodeChange={setIeltsSubmode}
+          ieltsPrompt={ieltsPrompt}
+          ieltsWriting={ieltsWriting}
+          onIeltsWritingChange={setIeltsWriting}
+          onGenerateIeltsPrompt={fetchIeltsPrompt}
+          isLoadingIeltsPrompt={isLoadingIeltsPrompt}
           onAnalyze={handleAnalyze}
           isAnalyzing={isAnalyzing}
           errorMessage={practiceError}
