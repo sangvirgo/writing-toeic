@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.env.local
+.DS_Store
+env
+./.env
+\.env
+.codegraph/
+store/writing-history.json
+# Keep store/writing-history.json and store/toeic-chunks.json tracked only if the repo is private.

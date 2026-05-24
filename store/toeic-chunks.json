@@ -1,0 +1,1074 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-24T13:37:37.015Z",
+  "chunks": [
+    {
+      "id": "meeting_001",
+      "text": "reschedule a meeting",
+      "meaningVi": "dời lịch cuộc họp",
+      "topic": "meeting",
+      "difficulty": "easy",
+      "example": "Could we reschedule the meeting to Friday afternoon?",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "verb_phrase"
+      ]
+    },
+    {
+      "id": "meeting_002",
+      "text": "attend a meeting",
+      "meaningVi": "tham dự một cuộc họp",
+      "topic": "meeting",
+      "difficulty": "easy",
+      "example": "I can't attend the meeting because I have a doctor's appointment.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "verb_phrase"
+      ]
+    },
+    {
+      "id": "meeting_003",
+      "text": "set up a meeting",
+      "meaningVi": "sắp xếp một cuộc họp",
+      "topic": "meeting",
+      "difficulty": "easy",
+      "example": "Let's set up a meeting with the sales team next week.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "verb_phrase"
+      ]
+    },
+    {
+      "id": "meeting_004",
+      "text": "cancel a meeting",
+      "meaningVi": "hủy một cuộc họp",
+      "topic": "meeting",
+      "difficulty": "easy",
+      "example": "We had to cancel the meeting because the client was sick.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "verb_phrase"
+      ]
+    },
+    {
+      "id": "meeting_005",
+      "text": "join a conference call",
+      "meaningVi": "tham gia cuộc gọi hội nghị",
+      "topic": "meeting",
+      "difficulty": "medium",
+      "example": "Please join the conference call ten minutes early to test the audio.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "remote"
+      ]
+    },
+    {
+      "id": "meeting_006",
+      "text": "take the minutes",
+      "meaningVi": "ghi biên bản cuộc họp",
+      "topic": "meeting",
+      "difficulty": "medium",
+      "example": "Lan will take the minutes during today's meeting.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "documentation"
+      ]
+    },
+    {
+      "id": "meeting_007",
+      "text": "wrap up the meeting",
+      "meaningVi": "kết thúc cuộc họp",
+      "topic": "meeting",
+      "difficulty": "medium",
+      "example": "Let's wrap up the meeting and continue this discussion tomorrow.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "verb_phrase"
+      ]
+    },
+    {
+      "id": "meeting_008",
+      "text": "go over the agenda",
+      "meaningVi": "xem qua chương trình họp",
+      "topic": "meeting",
+      "difficulty": "medium",
+      "example": "Before we start, let's go over the agenda together.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "verb_phrase"
+      ]
+    },
+    {
+      "id": "meeting_009",
+      "text": "raise a concern",
+      "meaningVi": "nêu lên một mối lo ngại",
+      "topic": "meeting",
+      "difficulty": "hard",
+      "example": "She raised a concern about the new working hours.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "discussion"
+      ]
+    },
+    {
+      "id": "meeting_010",
+      "text": "follow up after the meeting",
+      "meaningVi": "theo dõi sau cuộc họp",
+      "topic": "meeting",
+      "difficulty": "medium",
+      "example": "I will follow up after the meeting with a short summary email.",
+      "source": "seed",
+      "tags": [
+        "meeting",
+        "follow_up"
+      ]
+    },
+    {
+      "id": "office_001",
+      "text": "submit a report",
+      "meaningVi": "nộp báo cáo",
+      "topic": "office",
+      "difficulty": "easy",
+      "example": "Please submit the report by 5 p.m. tomorrow.",
+      "source": "seed",
+      "tags": [
+        "office",
+        "documents"
+      ]
+    },
+    {
+      "id": "office_002",
+      "text": "meet a deadline",
+      "meaningVi": "kịp hạn chót",
+      "topic": "office",
+      "difficulty": "medium",
+      "example": "We worked late to meet the deadline.",
+      "source": "seed",
+      "tags": [
+        "office",
+        "time"
+      ]
+    },
+    {
+      "id": "office_003",
+      "text": "handle paperwork",
+      "meaningVi": "xử lý giấy tờ",
+      "topic": "office",
+      "difficulty": "medium",
+      "example": "Could you handle the paperwork while I call the client?",
+      "source": "seed",
+      "tags": [
+        "office",
+        "documents"
+      ]
+    },
+    {
+      "id": "office_004",
+      "text": "respond to an email",
+      "meaningVi": "trả lời một email",
+      "topic": "office",
+      "difficulty": "easy",
+      "example": "I'll respond to her email as soon as I get back to my desk.",
+      "source": "seed",
+      "tags": [
+        "office",
+        "communication"
+      ]
+    },
+    {
+      "id": "office_005",
+      "text": "send a reminder",
+      "meaningVi": "gửi lời nhắc",
+      "topic": "office",
+      "difficulty": "easy",
+      "example": "Send a reminder to everyone an hour before the training session.",
+      "source": "seed",
+      "tags": [
+        "office",
+        "communication"
+      ]
+    },
+    {
+      "id": "office_006",
+      "text": "update the schedule",
+      "meaningVi": "cập nhật lịch trình",
+      "topic": "office",
+      "difficulty": "easy",
+      "example": "Could you update the schedule so the team sees the new times?",
+      "source": "seed",
+      "tags": [
+        "office",
+        "planning"
+      ]
+    },
+    {
+      "id": "office_007",
+      "text": "print out the document",
+      "meaningVi": "in tài liệu ra",
+      "topic": "office",
+      "difficulty": "easy",
+      "example": "Please print out the document and bring two copies to the meeting.",
+      "source": "seed",
+      "tags": [
+        "office",
+        "documents"
+      ]
+    },
+    {
+      "id": "office_008",
+      "text": "fill out a form",
+      "meaningVi": "điền vào biểu mẫu",
+      "topic": "office",
+      "difficulty": "easy",
+      "example": "New employees need to fill out a few forms on the first day.",
+      "source": "seed",
+      "tags": [
+        "office",
+        "documents"
+      ]
+    },
+    {
+      "id": "office_009",
+      "text": "share a file",
+      "meaningVi": "chia sẻ một tệp",
+      "topic": "office",
+      "difficulty": "easy",
+      "example": "I'll share the file with you over email.",
+      "source": "seed",
+      "tags": [
+        "office",
+        "communication"
+      ]
+    },
+    {
+      "id": "office_010",
+      "text": "work overtime",
+      "meaningVi": "làm thêm giờ",
+      "topic": "office",
+      "difficulty": "medium",
+      "example": "We had to work overtime to finish the project on time.",
+      "source": "seed",
+      "tags": [
+        "office",
+        "schedule"
+      ]
+    },
+    {
+      "id": "travel_001",
+      "text": "book a flight",
+      "meaningVi": "đặt chuyến bay",
+      "topic": "travel",
+      "difficulty": "easy",
+      "example": "I booked a flight to Singapore for the conference.",
+      "source": "seed",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "id": "travel_002",
+      "text": "confirm a reservation",
+      "meaningVi": "xác nhận đặt chỗ",
+      "topic": "travel",
+      "difficulty": "medium",
+      "example": "Please confirm the reservation at least 24 hours in advance.",
+      "source": "seed",
+      "tags": [
+        "travel",
+        "hotel"
+      ]
+    },
+    {
+      "id": "travel_003",
+      "text": "check in at the hotel",
+      "meaningVi": "làm thủ tục nhận phòng khách sạn",
+      "topic": "travel",
+      "difficulty": "medium",
+      "example": "We can check in at the hotel any time after 2 p.m.",
+      "source": "seed",
+      "tags": [
+        "travel",
+        "hotel"
+      ]
+    },
+    {
+      "id": "travel_004",
+      "text": "arrange transportation",
+      "meaningVi": "sắp xếp phương tiện đi lại",
+      "topic": "travel",
+      "difficulty": "medium",
+      "example": "Could you arrange transportation from the airport for our guests?",
+      "source": "seed",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "id": "travel_005",
+      "text": "miss the flight",
+      "meaningVi": "lỡ chuyến bay",
+      "topic": "travel",
+      "difficulty": "easy",
+      "example": "We almost missed the flight because of the traffic.",
+      "source": "seed",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "id": "travel_006",
+      "text": "extend the stay",
+      "meaningVi": "kéo dài thời gian lưu trú",
+      "topic": "travel",
+      "difficulty": "medium",
+      "example": "He extended the stay by two nights to attend an extra meeting.",
+      "source": "seed",
+      "tags": [
+        "travel",
+        "hotel"
+      ]
+    },
+    {
+      "id": "travel_007",
+      "text": "apply for a visa",
+      "meaningVi": "xin visa",
+      "topic": "travel",
+      "difficulty": "medium",
+      "example": "She applied for a visa three months before the trip.",
+      "source": "seed",
+      "tags": [
+        "travel",
+        "documents"
+      ]
+    },
+    {
+      "id": "travel_008",
+      "text": "pick up a rental car",
+      "meaningVi": "nhận xe thuê",
+      "topic": "travel",
+      "difficulty": "medium",
+      "example": "We'll pick up the rental car right after we land.",
+      "source": "seed",
+      "tags": [
+        "travel"
+      ]
+    },
+    {
+      "id": "customer_service_001",
+      "text": "handle customer complaints",
+      "meaningVi": "xử lý khiếu nại của khách hàng",
+      "topic": "customer_service",
+      "difficulty": "medium",
+      "example": "She handles customer complaints calmly and professionally.",
+      "source": "seed",
+      "tags": [
+        "customer_service"
+      ]
+    },
+    {
+      "id": "customer_service_002",
+      "text": "apologize for the inconvenience",
+      "meaningVi": "xin lỗi vì sự bất tiện",
+      "topic": "customer_service",
+      "difficulty": "medium",
+      "example": "We apologize for the inconvenience and will send a replacement today.",
+      "source": "seed",
+      "tags": [
+        "customer_service",
+        "politeness"
+      ]
+    },
+    {
+      "id": "customer_service_003",
+      "text": "process a refund",
+      "meaningVi": "xử lý hoàn tiền",
+      "topic": "customer_service",
+      "difficulty": "medium",
+      "example": "We will process your refund within five business days.",
+      "source": "seed",
+      "tags": [
+        "customer_service",
+        "money"
+      ]
+    },
+    {
+      "id": "customer_service_004",
+      "text": "issue a replacement",
+      "meaningVi": "cấp sản phẩm thay thế",
+      "topic": "customer_service",
+      "difficulty": "hard",
+      "example": "We can issue a replacement if the item arrived damaged.",
+      "source": "seed",
+      "tags": [
+        "customer_service"
+      ]
+    },
+    {
+      "id": "customer_service_005",
+      "text": "contact customer support",
+      "meaningVi": "liên hệ bộ phận hỗ trợ khách hàng",
+      "topic": "customer_service",
+      "difficulty": "easy",
+      "example": "Please contact customer support if you have any further questions.",
+      "source": "seed",
+      "tags": [
+        "customer_service"
+      ]
+    },
+    {
+      "id": "customer_service_006",
+      "text": "resolve an issue",
+      "meaningVi": "giải quyết một vấn đề",
+      "topic": "customer_service",
+      "difficulty": "medium",
+      "example": "Our team resolved the issue within an hour.",
+      "source": "seed",
+      "tags": [
+        "customer_service"
+      ]
+    },
+    {
+      "id": "customer_service_007",
+      "text": "provide additional information",
+      "meaningVi": "cung cấp thêm thông tin",
+      "topic": "customer_service",
+      "difficulty": "medium",
+      "example": "Could you provide additional information about your order number?",
+      "source": "seed",
+      "tags": [
+        "customer_service"
+      ]
+    },
+    {
+      "id": "customer_service_008",
+      "text": "follow up on a complaint",
+      "meaningVi": "theo dõi một khiếu nại",
+      "topic": "customer_service",
+      "difficulty": "medium",
+      "example": "I'll follow up on your complaint and get back to you tomorrow.",
+      "source": "seed",
+      "tags": [
+        "customer_service",
+        "follow_up"
+      ]
+    },
+    {
+      "id": "customer_service_009",
+      "text": "offer a discount",
+      "meaningVi": "đề nghị giảm giá",
+      "topic": "customer_service",
+      "difficulty": "easy",
+      "example": "As a goodwill gesture, we'd like to offer you a 15% discount.",
+      "source": "seed",
+      "tags": [
+        "customer_service",
+        "money"
+      ]
+    },
+    {
+      "id": "customer_service_010",
+      "text": "confirm receipt of the order",
+      "meaningVi": "xác nhận đã nhận được đơn hàng",
+      "topic": "customer_service",
+      "difficulty": "hard",
+      "example": "Could you confirm receipt of the order so we can ship it out?",
+      "source": "seed",
+      "tags": [
+        "customer_service"
+      ]
+    },
+    {
+      "id": "shopping_001",
+      "text": "place an order",
+      "meaningVi": "đặt hàng",
+      "topic": "shopping",
+      "difficulty": "easy",
+      "example": "I placed an order for two laptops this morning.",
+      "source": "seed",
+      "tags": [
+        "shopping"
+      ]
+    },
+    {
+      "id": "shopping_002",
+      "text": "process an order",
+      "meaningVi": "xử lý đơn hàng",
+      "topic": "shopping",
+      "difficulty": "medium",
+      "example": "Your order is being processed and will ship tomorrow.",
+      "source": "seed",
+      "tags": [
+        "shopping"
+      ]
+    },
+    {
+      "id": "shopping_003",
+      "text": "request a refund",
+      "meaningVi": "yêu cầu hoàn tiền",
+      "topic": "shopping",
+      "difficulty": "medium",
+      "example": "I would like to request a refund for the broken item.",
+      "source": "seed",
+      "tags": [
+        "shopping",
+        "money"
+      ]
+    },
+    {
+      "id": "shopping_004",
+      "text": "track a shipment",
+      "meaningVi": "theo dõi đơn hàng vận chuyển",
+      "topic": "shopping",
+      "difficulty": "medium",
+      "example": "You can track the shipment using the link in the email.",
+      "source": "seed",
+      "tags": [
+        "shopping"
+      ]
+    },
+    {
+      "id": "shopping_005",
+      "text": "compare prices",
+      "meaningVi": "so sánh giá",
+      "topic": "shopping",
+      "difficulty": "easy",
+      "example": "It's a good idea to compare prices before you buy.",
+      "source": "seed",
+      "tags": [
+        "shopping"
+      ]
+    },
+    {
+      "id": "shopping_006",
+      "text": "return an item",
+      "meaningVi": "trả lại một món hàng",
+      "topic": "shopping",
+      "difficulty": "easy",
+      "example": "You can return an item within 30 days of purchase.",
+      "source": "seed",
+      "tags": [
+        "shopping"
+      ]
+    },
+    {
+      "id": "shopping_007",
+      "text": "apply a discount code",
+      "meaningVi": "áp dụng mã giảm giá",
+      "topic": "shopping",
+      "difficulty": "medium",
+      "example": "Don't forget to apply the discount code at checkout.",
+      "source": "seed",
+      "tags": [
+        "shopping",
+        "money"
+      ]
+    },
+    {
+      "id": "shopping_008",
+      "text": "add to the cart",
+      "meaningVi": "thêm vào giỏ hàng",
+      "topic": "shopping",
+      "difficulty": "easy",
+      "example": "She added two books to the cart and went to checkout.",
+      "source": "seed",
+      "tags": [
+        "shopping",
+        "online"
+      ]
+    },
+    {
+      "id": "hr_001",
+      "text": "submit the application form",
+      "meaningVi": "nộp đơn ứng tuyển",
+      "topic": "hr",
+      "difficulty": "medium",
+      "example": "Please submit the application form by the end of the week.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "hiring"
+      ]
+    },
+    {
+      "id": "hr_002",
+      "text": "attend a job interview",
+      "meaningVi": "tham dự buổi phỏng vấn việc làm",
+      "topic": "hr",
+      "difficulty": "medium",
+      "example": "He attended a job interview at a software company yesterday.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "hiring"
+      ]
+    },
+    {
+      "id": "hr_003",
+      "text": "take a day off",
+      "meaningVi": "xin nghỉ một ngày",
+      "topic": "hr",
+      "difficulty": "easy",
+      "example": "I'd like to take a day off next Monday to visit my family.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "leave"
+      ]
+    },
+    {
+      "id": "hr_004",
+      "text": "apply for leave",
+      "meaningVi": "xin nghỉ phép",
+      "topic": "hr",
+      "difficulty": "medium",
+      "example": "Employees should apply for leave at least one week in advance.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "leave"
+      ]
+    },
+    {
+      "id": "hr_005",
+      "text": "negotiate a salary",
+      "meaningVi": "thương lượng mức lương",
+      "topic": "hr",
+      "difficulty": "hard",
+      "example": "She negotiated a higher salary before signing the contract.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "money"
+      ]
+    },
+    {
+      "id": "hr_006",
+      "text": "accept a job offer",
+      "meaningVi": "nhận lời mời làm việc",
+      "topic": "hr",
+      "difficulty": "medium",
+      "example": "He accepted the job offer the same afternoon.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "hiring"
+      ]
+    },
+    {
+      "id": "hr_007",
+      "text": "give two weeks' notice",
+      "meaningVi": "thông báo trước hai tuần khi nghỉ việc",
+      "topic": "hr",
+      "difficulty": "hard",
+      "example": "She gave two weeks' notice before starting her new role.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "resignation"
+      ]
+    },
+    {
+      "id": "hr_008",
+      "text": "fill in for a colleague",
+      "meaningVi": "làm thay cho đồng nghiệp",
+      "topic": "hr",
+      "difficulty": "hard",
+      "example": "Can you fill in for Hoa while she's on holiday next week?",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "coverage"
+      ]
+    },
+    {
+      "id": "hr_009",
+      "text": "attend an orientation",
+      "meaningVi": "tham dự buổi định hướng nhân viên mới",
+      "topic": "hr",
+      "difficulty": "medium",
+      "example": "All new hires must attend an orientation on their first day.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "onboarding"
+      ]
+    },
+    {
+      "id": "hr_010",
+      "text": "update your resume",
+      "meaningVi": "cập nhật sơ yếu lý lịch",
+      "topic": "hr",
+      "difficulty": "easy",
+      "example": "It's a good habit to update your resume every few months.",
+      "source": "seed",
+      "tags": [
+        "hr",
+        "career"
+      ]
+    },
+    {
+      "id": "finance_001",
+      "text": "approve the budget",
+      "meaningVi": "phê duyệt ngân sách",
+      "topic": "finance",
+      "difficulty": "medium",
+      "example": "The director approved the budget for next quarter.",
+      "source": "seed",
+      "tags": [
+        "finance"
+      ]
+    },
+    {
+      "id": "finance_002",
+      "text": "reduce operating costs",
+      "meaningVi": "giảm chi phí vận hành",
+      "topic": "finance",
+      "difficulty": "hard",
+      "example": "The new software helped us reduce operating costs by 12%.",
+      "source": "seed",
+      "tags": [
+        "finance"
+      ]
+    },
+    {
+      "id": "finance_003",
+      "text": "balance the books",
+      "meaningVi": "cân đối sổ sách",
+      "topic": "finance",
+      "difficulty": "hard",
+      "example": "Our accountant balances the books at the end of every month.",
+      "source": "seed",
+      "tags": [
+        "finance",
+        "accounting"
+      ]
+    },
+    {
+      "id": "finance_004",
+      "text": "issue an invoice",
+      "meaningVi": "phát hành hóa đơn",
+      "topic": "finance",
+      "difficulty": "medium",
+      "example": "We issue an invoice as soon as the order is shipped.",
+      "source": "seed",
+      "tags": [
+        "finance"
+      ]
+    },
+    {
+      "id": "finance_005",
+      "text": "make a payment",
+      "meaningVi": "thực hiện thanh toán",
+      "topic": "finance",
+      "difficulty": "easy",
+      "example": "You can make a payment online or in our office.",
+      "source": "seed",
+      "tags": [
+        "finance"
+      ]
+    },
+    {
+      "id": "finance_006",
+      "text": "transfer funds",
+      "meaningVi": "chuyển tiền",
+      "topic": "finance",
+      "difficulty": "medium",
+      "example": "We transferred the funds yesterday afternoon.",
+      "source": "seed",
+      "tags": [
+        "finance",
+        "banking"
+      ]
+    },
+    {
+      "id": "finance_007",
+      "text": "cut expenses",
+      "meaningVi": "cắt giảm chi phí",
+      "topic": "finance",
+      "difficulty": "medium",
+      "example": "The team agreed to cut expenses until the new contract starts.",
+      "source": "seed",
+      "tags": [
+        "finance"
+      ]
+    },
+    {
+      "id": "finance_008",
+      "text": "review the financial report",
+      "meaningVi": "xem xét báo cáo tài chính",
+      "topic": "finance",
+      "difficulty": "medium",
+      "example": "Please review the financial report before tomorrow's meeting.",
+      "source": "seed",
+      "tags": [
+        "finance",
+        "documents"
+      ]
+    },
+    {
+      "id": "finance_009",
+      "text": "close a deal",
+      "meaningVi": "chốt được thỏa thuận",
+      "topic": "finance",
+      "difficulty": "medium",
+      "example": "We closed the deal after three rounds of negotiations.",
+      "source": "seed",
+      "tags": [
+        "finance",
+        "sales"
+      ]
+    },
+    {
+      "id": "finance_010",
+      "text": "open a bank account",
+      "meaningVi": "mở tài khoản ngân hàng",
+      "topic": "finance",
+      "difficulty": "easy",
+      "example": "I opened a bank account for the new company last week.",
+      "source": "seed",
+      "tags": [
+        "finance",
+        "banking"
+      ]
+    },
+    {
+      "id": "business_001",
+      "text": "reach an agreement",
+      "meaningVi": "đạt được thỏa thuận",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "The two companies reached an agreement after a long discussion.",
+      "source": "seed",
+      "tags": [
+        "business",
+        "negotiation"
+      ]
+    },
+    {
+      "id": "business_002",
+      "text": "review the proposal",
+      "meaningVi": "xem xét đề xuất",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "I'll review the proposal tonight and let you know tomorrow.",
+      "source": "seed",
+      "tags": [
+        "business"
+      ]
+    },
+    {
+      "id": "business_003",
+      "text": "discuss the proposal",
+      "meaningVi": "thảo luận về đề xuất",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "Let's discuss the proposal in our next meeting.",
+      "source": "seed",
+      "tags": [
+        "business"
+      ]
+    },
+    {
+      "id": "business_004",
+      "text": "make a recommendation",
+      "meaningVi": "đưa ra khuyến nghị",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "She made a recommendation to switch to a faster supplier.",
+      "source": "seed",
+      "tags": [
+        "business"
+      ]
+    },
+    {
+      "id": "business_005",
+      "text": "deliver a presentation",
+      "meaningVi": "thuyết trình",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "I have to deliver a presentation to the new clients on Thursday.",
+      "source": "seed",
+      "tags": [
+        "business",
+        "speaking"
+      ]
+    },
+    {
+      "id": "business_006",
+      "text": "take responsibility for",
+      "meaningVi": "chịu trách nhiệm về",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "He took responsibility for the mistake and apologized to the team.",
+      "source": "seed",
+      "tags": [
+        "business",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "business_007",
+      "text": "be responsible for",
+      "meaningVi": "có trách nhiệm về",
+      "topic": "business",
+      "difficulty": "easy",
+      "example": "I'm responsible for the marketing budget this quarter.",
+      "source": "seed",
+      "tags": [
+        "business",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "business_008",
+      "text": "improve productivity",
+      "meaningVi": "cải thiện năng suất",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "Short daily standups have helped us improve productivity.",
+      "source": "seed",
+      "tags": [
+        "business"
+      ]
+    },
+    {
+      "id": "business_009",
+      "text": "expand the business",
+      "meaningVi": "mở rộng kinh doanh",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "They plan to expand the business into Southeast Asia next year.",
+      "source": "seed",
+      "tags": [
+        "business",
+        "growth"
+      ]
+    },
+    {
+      "id": "business_010",
+      "text": "launch a product",
+      "meaningVi": "ra mắt sản phẩm",
+      "topic": "business",
+      "difficulty": "medium",
+      "example": "We will launch the new product at the trade show in June.",
+      "source": "seed",
+      "tags": [
+        "business",
+        "marketing"
+      ]
+    },
+    {
+      "id": "general_001",
+      "text": "follow up on",
+      "meaningVi": "theo dõi (tiếp tục) về một việc",
+      "topic": "general",
+      "difficulty": "medium",
+      "example": "I'll follow up on the request and let you know by Friday.",
+      "source": "seed",
+      "tags": [
+        "general",
+        "follow_up"
+      ]
+    },
+    {
+      "id": "general_002",
+      "text": "look forward to",
+      "meaningVi": "mong chờ",
+      "topic": "general",
+      "difficulty": "easy",
+      "example": "I look forward to hearing from you.",
+      "source": "seed",
+      "tags": [
+        "general",
+        "email_phrase"
+      ]
+    },
+    {
+      "id": "general_003",
+      "text": "be available for",
+      "meaningVi": "sẵn sàng cho / có mặt cho",
+      "topic": "general",
+      "difficulty": "medium",
+      "example": "Are you available for a quick call tomorrow morning?",
+      "source": "seed",
+      "tags": [
+        "general"
+      ]
+    },
+    {
+      "id": "general_004",
+      "text": "due to unexpected circumstances",
+      "meaningVi": "do hoàn cảnh bất ngờ",
+      "topic": "general",
+      "difficulty": "hard",
+      "example": "Due to unexpected circumstances, the event has been postponed.",
+      "source": "seed",
+      "tags": [
+        "general",
+        "formal"
+      ]
+    },
+    {
+      "id": "general_005",
+      "text": "as soon as possible",
+      "meaningVi": "càng sớm càng tốt",
+      "topic": "general",
+      "difficulty": "easy",
+      "example": "Please reply as soon as possible so we can finalize the booking.",
+      "source": "seed",
+      "tags": [
+        "general",
+        "email_phrase"
+      ]
+    },
+    {
+      "id": "general_006",
+      "text": "at your earliest convenience",
+      "meaningVi": "vào lúc tiện sớm nhất của bạn",
+      "topic": "general",
+      "difficulty": "hard",
+      "example": "Please reply at your earliest convenience.",
+      "source": "seed",
+      "tags": [
+        "general",
+        "formal",
+        "email_phrase"
+      ]
+    },
+    {
+      "id": "general_007",
+      "text": "on behalf of",
+      "meaningVi": "thay mặt cho",
+      "topic": "general",
+      "difficulty": "medium",
+      "example": "On behalf of the team, I want to thank you for your help.",
+      "source": "seed",
+      "tags": [
+        "general",
+        "formal"
+      ]
+    },
+    {
+      "id": "general_008",
+      "text": "in advance",
+      "meaningVi": "trước (thời điểm nào đó)",
+      "topic": "general",
+      "difficulty": "easy",
+      "example": "Thank you in advance for your help.",
+      "source": "seed",
+      "tags": [
+        "general",
+        "email_phrase"
+      ]
+    }
+  ]
+}
