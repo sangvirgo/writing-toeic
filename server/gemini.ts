@@ -47,8 +47,11 @@ export function isGeminiEnabled(): boolean {
   return typeof process.env.GEMINI_API_KEY === 'string' && process.env.GEMINI_API_KEY.length > 0;
 }
 
-export async function analyzeWritingWithGemini(input: GeminiInput): Promise<AiFeedback> {
-  const apiKey = process.env.GEMINI_API_KEY;
+export async function analyzeWritingWithGemini(
+  input: GeminiInput,
+  apiKeyOverride?: string,
+): Promise<AiFeedback> {
+  const apiKey = apiKeyOverride || process.env.GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error('GEMINI_API_KEY is not set.');
   }
@@ -358,8 +361,9 @@ interface GenerateChunksInput {
 
 export async function generateChunksWithGemini(
   input: GenerateChunksInput,
+  apiKeyOverride?: string,
 ): Promise<unknown> {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = apiKeyOverride || process.env.GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error('GEMINI_API_KEY is not set.');
   }

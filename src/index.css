@@ -927,3 +927,83 @@ html, body, #root {
   padding-left: 20px;
   font-size: 14px;
 }
+
+/* ── ApiKeySettings ───────────────────────────── */
+
+.api-key-settings {
+  max-width: 520px;
+  margin: 12px auto 0;
+  padding: 10px 16px;
+  background: var(--card-bg, #f9fafb);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.api-key-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.api-key-label {
+  font-weight: 600;
+}
+
+.api-key-value {
+  font-family: monospace;
+  font-size: 13px;
+}
+
+.api-key-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.api-key-input-row input[type='password'] {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--border, #d1d5db);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn-sm {
+  padding: 4px 12px;
+  font-size: 13px;
+  border: 1px solid var(--border, #d1d5db);
+  border-radius: 6px;
+  background: var(--card-bg, #fff);
+  cursor: pointer;
+}
+
+.btn-sm:hover {
+  background: #f3f4f6;
+}
+
+.btn-sm.btn-primary {
+  background: #3b82f6;
+  color: #fff;
+  border-color: #3b82f6;
+}
+
+.btn-sm.btn-primary:hover {
+  background: #2563eb;
+}
+
+.btn-sm.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-sm.btn-danger {
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+.btn-sm.btn-danger:hover {
+  background: #fef2f2;
+}

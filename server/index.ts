@@ -78,7 +78,26 @@ const VALID_IELTS_TOPICS: IeltsTopic[] = [
 const VALID_IELTS_DIFFICULTIES: IeltsDifficulty[] = ['easy', 'medium', 'hard'];
 const VALID_IELTS_MODES: IeltsPracticeMode[] = ['ielts_sentence', 'ielts_paragraph'];
 
+// Extend Express Request to carry the optional user-provided Gemini API key.
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Express {
+    interface Request {
+      geminiApiKeyOverride?: string;
+    }
+  }
+}
+
 app.use(express.json({ limit: '1mb' }));
+
+// Read X-Gemini-Api-Key header so frontend can supply a per-user key.
+app.use((req, _res, next) => {
+  const headerKey = req.headers['x-gemini-api-key'];
+  if (typeof headerKey === 'string' && headerKey.length > 0) {
+    req.geminiApiKeyOverride = headerKey;
+  }
+  next();
+});
 
 app.get('/api/health', (_req, res) => {
   res.json({
@@ -141,14 +160,17 @@ app.post('/api/analyze', async (req: Request, res: Response, next: NextFunction)
     let feedback: AiFeedback;
     let source: FeedbackSource;
 
-    if (isGeminiEnabled()) {
+    if (isGeminiEnabled() || req.geminiApiKeyOverride) {
       try {
-        feedback = await analyzeWritingWithGemini({
-          mode,
-          prompt: cleanPrompt,
-          userWriting,
-          model: chosenModel,
-        });
+        feedback = await analyzeWritingWithGemini(
+          {
+            mode,
+            prompt: cleanPrompt,
+            userWriting,
+            model: chosenModel,
+          },
+          req.geminiApiKeyOverride,
+        );
         source = 'gemini';
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
@@ -277,7 +299,7 @@ app.post('/api/chunks/generate', async (req, res, next) => {
     }
 
     try {
-      const result = await generateChunks({ ...validation.draft, model: chosenModel });
+      const result = await generateChunks({ ...validation.draft, model: chosenModel }, req.geminiApiKeyOverride);
       res.json(result);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);

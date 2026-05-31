@@ -5,6 +5,7 @@ import { HistoryList } from './components/HistoryList';
 import { ChunkManager } from './components/ChunkManager';
 import { LearningStats } from './components/LearningStats';
 import { ModelSelector } from './components/ModelSelector';
+import { ApiKeySettings } from './components/ApiKeySettings';
 import {
   MistakeReview,
   buildMistakeTaskPrompt,
@@ -243,6 +244,8 @@ export default function App() {
         <h1>English Writing Trainer</h1>
         <p className="subtitle">Practice TOEIC chunks and daily English journaling.</p>
       </header>
+
+      <ApiKeySettings />
 
       <ModelSelector
         models={models}

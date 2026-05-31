@@ -237,13 +237,14 @@ function sanitizeGenerated(
 
 export async function generateChunks(
   request: GenerateRequest,
+  apiKeyOverride?: string,
 ): Promise<GenerateResult> {
   let raw: unknown;
   let source: FeedbackSource;
 
-  if (isGeminiEnabled()) {
+  if (isGeminiEnabled() || apiKeyOverride) {
     try {
-      raw = await generateChunksWithGemini(request);
+      raw = await generateChunksWithGemini(request, apiKeyOverride);
       source = 'gemini';
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
