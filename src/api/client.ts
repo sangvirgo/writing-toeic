@@ -15,6 +15,14 @@ import type {
 } from '../types';
 import { getStoredApiKey } from '../components/ApiKeySettings';
 
+/** Base URL for API calls. Empty in dev (Vite proxy), set in production. */
+const API_BASE = import.meta.env.VITE_API_BASE ?? '';
+
+/** Prepend API_BASE to a path. */
+function api(path: string): string {
+  return API_BASE ? `${API_BASE}${path}` : path;
+}
+
 /** Build headers object with optional X-Gemini-Api-Key from localStorage. */
 function withApiKey(init?: RequestInit): RequestInit {
   const key = getStoredApiKey();
@@ -45,7 +53,7 @@ export async function getHealth(): Promise<{
   geminiEnabled: boolean;
   defaultModel: GeminiModelId;
 }> {
-  const res = await fetch('/api/health', withApiKey());
+  const res = await fetch(api('/api/health'), withApiKey());
   return handle(res);
 }
 
@@ -56,12 +64,12 @@ export interface GetModelsResponse {
 }
 
 export async function getModels(): Promise<GetModelsResponse> {
-  const res = await fetch('/api/models', withApiKey());
+  const res = await fetch(api('/api/models'), withApiKey());
   return handle<GetModelsResponse>(res);
 }
 
 export async function getHistory(): Promise<AppDatabase> {
-  const res = await fetch('/api/history', withApiKey());
+  const res = await fetch(api('/api/history'), withApiKey());
   return handle<AppDatabase>(res);
 }
 
@@ -80,7 +88,7 @@ export interface AnalyzeResponse {
 
 export async function analyzeWriting(input: AnalyzeRequest): Promise<AnalyzeResponse> {
   const res = await fetch(
-    '/api/analyze',
+    api('/api/analyze'),
     withApiKey({
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -92,7 +100,7 @@ export async function analyzeWriting(input: AnalyzeRequest): Promise<AnalyzeResp
 
 export async function deleteHistoryItem(id: string): Promise<void> {
   const res = await fetch(
-    `/api/history/${encodeURIComponent(id)}`,
+    api(`/api/history/${encodeURIComponent(id)}`),
     withApiKey({ method: 'DELETE' }),
   );
   await handle<{ ok: boolean }>(res);
@@ -115,13 +123,13 @@ function toQuery(filters: ChunkFiltersClient | undefined): string {
 }
 
 export async function getChunks(filters?: ChunkFiltersClient): Promise<ToeicChunk[]> {
-  const res = await fetch(`/api/chunks${toQuery(filters)}`, withApiKey());
+  const res = await fetch(api(`/api/chunks${toQuery(filters)}`), withApiKey());
   const data = await handle<{ chunks: ToeicChunk[] }>(res);
   return data.chunks;
 }
 
 export async function getRandomChunk(filters?: ChunkFiltersClient): Promise<ToeicChunk> {
-  const res = await fetch(`/api/chunks/random${toQuery(filters)}`, withApiKey());
+  const res = await fetch(api(`/api/chunks/random${toQuery(filters)}`), withApiKey());
   const data = await handle<{ chunk: ToeicChunk }>(res);
   return data.chunk;
 }
@@ -137,7 +145,7 @@ export interface CreateChunkInput {
 
 export async function createChunk(input: CreateChunkInput): Promise<ToeicChunk> {
   const res = await fetch(
-    '/api/chunks',
+    api('/api/chunks'),
     withApiKey({
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -149,7 +157,7 @@ export async function createChunk(input: CreateChunkInput): Promise<ToeicChunk> 
 }
 
 export async function deleteChunk(id: string): Promise<void> {
-  const res = await fetch(`/api/chunks/${encodeURIComponent(id)}`, withApiKey({ method: 'DELETE' }));
+  const res = await fetch(api(`/api/chunks/${encodeURIComponent(id)}`), withApiKey({ method: 'DELETE' }));
   await handle<{ ok: boolean }>(res);
 }
 
@@ -171,7 +179,7 @@ export async function generateChunks(
   input: GenerateChunksInput,
 ): Promise<GenerateChunksResponse> {
   const res = await fetch(
-    '/api/chunks/generate',
+    api('/api/chunks/generate'),
     withApiKey({
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -187,7 +195,7 @@ export async function togglePatternFavorite(
   favorite: boolean,
 ): Promise<void> {
   const res = await fetch(
-    `/api/history/${encodeURIComponent(attemptId)}/patterns/${patternIndex}/favorite`,
+    api(`/api/history/${encodeURIComponent(attemptId)}/patterns/${patternIndex}/favorite`),
     withApiKey({
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -218,7 +226,7 @@ function ieltsToQuery(filters: IeltsPromptFiltersClient | undefined): string {
 export async function getIeltsPrompts(
   filters?: IeltsPromptFiltersClient,
 ): Promise<IeltsPrompt[]> {
-  const res = await fetch(`/api/ielts/prompts${ieltsToQuery(filters)}`, withApiKey());
+  const res = await fetch(api(`/api/ielts/prompts${ieltsToQuery(filters)}`), withApiKey());
   const data = await handle<{ prompts: IeltsPrompt[] }>(res);
   return data.prompts;
 }
@@ -226,7 +234,7 @@ export async function getIeltsPrompts(
 export async function getRandomIeltsPrompt(
   filters?: IeltsPromptFiltersClient,
 ): Promise<IeltsPrompt> {
-  const res = await fetch(`/api/ielts/prompts/random${ieltsToQuery(filters)}`, withApiKey());
+  const res = await fetch(api(`/api/ielts/prompts/random${ieltsToQuery(filters)}`), withApiKey());
   const data = await handle<{ prompt: IeltsPrompt }>(res);
   return data.prompt;
 }
